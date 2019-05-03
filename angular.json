@@ -1,0 +1,148 @@
+{
+    "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+    "version": 1,
+    "newProjectRoot": "library",
+    "projects": {
+        "NgxLazyBind": {
+            "root": "library/ngx-lazy-bind",
+            "sourceRoot": "library/ngx-lazy-bind/src",
+            "projectType": "library",
+            "prefix": "uni",
+            "architect": {
+                "build": {
+                    "builder": "@angular-devkit/build-ng-packagr:build",
+                    "options": {
+                        "tsConfig": "library/ngx-lazy-bind/tsconfig.lib.json",
+                        "project": "library/ngx-lazy-bind/ng-package.json"
+                    }
+                },
+                "test": {
+                    "builder": "@angular-builders/jest:run",
+                    "options": {
+                        "main": "library/ngx-lazy-bind/src/test.ts",
+                        "tsConfig": "library/ngx-lazy-bind/tsconfig.spec.json"
+                    }
+                },
+                "lint": {
+                    "builder": "@angular-devkit/build-angular:tslint",
+                    "options": {
+                        "tsConfig": [
+                            "library/ngx-lazy-bind/tsconfig.lib.json",
+                            "library/ngx-lazy-bind/tsconfig.spec.json"
+                        ],
+                        "exclude": [
+                            "**/node_modules/**"
+                        ]
+                    }
+                }
+            }
+        },
+        "TestCases": {
+            "root": "library/TestCases/",
+            "sourceRoot": "library/TestCases/src",
+            "projectType": "application",
+            "prefix": "uni",
+            "schematics": {
+                "@schematics/angular:component": {
+                    "style": "scss"
+                }
+            },
+            "architect": {
+                "build": {
+                    "builder": "@angular-devkit/build-angular:browser",
+                    "options": {
+                        "baseHref": "/ngx-lazy-bind/test-cases/",
+                        "outputPath": "docs/test-cases",
+                        "index": "library/TestCases/src/index.html",
+                        "main": "library/TestCases/src/main.ts",
+                        "polyfills": "library/TestCases/src/polyfills.ts",
+                        "tsConfig": "library/TestCases/tsconfig.app.json",
+                        "assets": [
+                            "library/TestCases/src/favicon.ico",
+                            "library/TestCases/src/assets"
+                        ],
+                        "styles": [
+                            "library/TestCases/src/styles.scss",
+                            "node_modules/prismjs/themes/prism-solarizedlight.css"
+                        ],
+                        "scripts": [
+                            "node_modules/marked/lib/marked.js",
+                            "node_modules/prismjs/prism.js",
+                            "node_modules/prismjs/components/prism-typescript.min.js",
+                            "node_modules/prismjs/components/prism-css.min.js"
+                        ],
+                        "es5BrowserSupport": true
+                    },
+                    "configurations": {
+                        "production": {
+                            "fileReplacements": [{
+                                "replace": "library/TestCases/src/environments/environment.ts",
+                                "with": "library/TestCases/src/environments/environment.prod.ts"
+                            }],
+                            "optimization": true,
+                            "outputHashing": "all",
+                            "sourceMap": false,
+                            "extractCss": true,
+                            "namedChunks": false,
+                            "aot": true,
+                            "extractLicenses": true,
+                            "vendorChunk": false,
+                            "buildOptimizer": true,
+                            "budgets": [{
+                                "type": "initial",
+                                "maximumWarning": "2mb",
+                                "maximumError": "5mb"
+                            }]
+                        }
+                    }
+                },
+                "serve": {
+                    "builder": "@angular-devkit/build-angular:dev-server",
+                    "options": {
+                        "browserTarget": "TestCases:build"
+                    },
+                    "configurations": {
+                        "production": {
+                            "browserTarget": "TestCases:build:production"
+                        }
+                    }
+                },
+                "extract-i18n": {
+                    "builder": "@angular-devkit/build-angular:extract-i18n",
+                    "options": {
+                        "browserTarget": "TestCases:build"
+                    }
+                },
+                "test": {
+                    "builder": "@angular-builders/jest:run",
+                    "options": {
+                        "main": "library/TestCases/src/test.ts",
+                        "polyfills": "library/TestCases/src/polyfills.ts",
+                        "tsConfig": "library/TestCases/tsconfig.spec.json",
+                        "styles": [
+                            "library/TestCases/src/styles.scss"
+                        ],
+                        "scripts": [],
+                        "assets": [
+                            "library/TestCases/src/favicon.ico",
+                            "library/TestCases/src/assets"
+                        ]
+                    }
+                },
+                "lint": {
+                    "builder": "@angular-devkit/build-angular:tslint",
+                    "options": {
+                        "tsConfig": [
+                            "library/TestCases/tsconfig.app.json",
+                            "library/TestCases/tsconfig.spec.json"
+                        ],
+                        "exclude": [
+                            "**/node_modules/**"
+                        ]
+                    }
+                }
+            }
+        }
+    },
+    "defaultProject": "NgxLazyBind"
+}

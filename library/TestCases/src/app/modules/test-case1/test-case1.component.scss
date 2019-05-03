@@ -1,0 +1,71 @@
+@import '~library/TestCases/src/styles/library';
+
+:host {
+    display: block;
+    padding: 1rem;
+
+    nav {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 50px;
+        background-color: $orange;
+
+        ul {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: row;
+
+            li {
+                list-style: none;
+                margin: 0;
+                padding: 1rem;
+                color: $font-color-invert;
+
+                &.active {
+                    color: $orange;
+                    background-color: white;
+                }
+            }
+        }
+    }
+
+    h2 {
+        background-color: $lightblue;
+        color: white;
+        margin-bottom: 0;
+    }
+
+    h3 {
+        background-color: $lightrose;
+        color: white;
+    }
+
+    .container-input {
+        display: grid;
+        grid-template-rows: auto;
+        grid-gap: 1rem;
+    }
+
+    .label-input {
+        display: grid;
+        grid-template-columns: 160px 1fr;
+        grid-gap: 1rem;
+        max-width: 600px;
+    }
+
+    .actions {
+        &>* {
+            margin-right: 1em;
+        }
+    }
+
+    .boxes {
+        display: flex;
+        flex-wrap: wrap;
+
+        &>* {
+            flex: 1;
+        }
+    }
+}
