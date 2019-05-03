@@ -27,11 +27,11 @@ export class TestExampleModule {
 
 ### TestExampleComponent
 
-[See Test Example Component](https://github.com/uniprank/ngx-scrollspy/tree/master/library/TestCases/src/app/modules/test-case1)
+[See Test Example Component](https://github.com/uniprank/ngx-lazy-bind/blob/master/library/TestCases/src/app/modules/test-case1/components/test-example/test-example.component.ts)
 
 ### TestExampleComponent HTML
 
-[See Test Example HTML](https://github.com/uniprank/ngx-scrollspy/tree/master/library/TestCases/src/app/modules/test-case1)
+[See Test Example HTML](https://github.com/uniprank/ngx-lazy-bind/blob/master/library/TestCases/src/app/modules/test-case1/components/test-example/test-example.component.html)
 
 ## TestExample2Module
 
@@ -50,11 +50,11 @@ export class TestExample2Module {
 
 ### TestExample2Component
 
-[See Test Example 2 Component](https://github.com/uniprank/ngx-scrollspy/tree/master/library/TestCases/src/app/modules/test-case1)
+[See Test Example 2 Component](https://github.com/uniprank/ngx-lazy-bind/blob/master/library/TestCases/src/app/modules/test-case1/components/test-example2/test-example2.component.ts)
 
 ### TestExample2Component HTML
 
-[See Test Example 2 HTML](https://github.com/uniprank/ngx-scrollspy/tree/master/library/TestCases/src/app/modules/test-case1)
+[See Test Example 2 HTML](https://github.com/uniprank/ngx-lazy-bind/blob/master/library/TestCases/src/app/modules/test-case1/components/test-example2/test-example2.component.html)
 
 ## HTML Template
 
