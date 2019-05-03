@@ -68,6 +68,6 @@ export class TestExample2Module {
     </div>
     <!-- The first bind is the Component Name (TEC or TEC2), the second bind is the data to be use (object, string,  ...) -->
     <ng-container *lazyBind="'TEC'; data: {}"></ng-container>
-    <ng-container *lazyBind="'Tec2'; data: { $data: {}, $specialData: {} }"></ng-container>
+    <ng-container *lazyBind="'TEC2'; data: { $data: {}, $specialData: {} }"></ng-container>
 </section>
 ```
