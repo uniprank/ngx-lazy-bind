@@ -1,6 +1,6 @@
 {
-    "name": "ngx-lazy-bind",
-    "version": "0.1.0",
+    "name": "@uniprank/ngx-lazy-bind",
+    "version": "1.0.0",
     "author": {
         "name": "Dennis Fiedler",
         "email": "npm-package@uniprank.com",

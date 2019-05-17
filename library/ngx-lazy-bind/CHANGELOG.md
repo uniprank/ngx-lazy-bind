@@ -7,24 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [0.0.9] - 2019-03-15
+## [1.0.0] - 2019-05-17
 
 ### Changed
 
--   Update build and package process. To fix the issue with the npm scripts.
--   Try to fix issue with deployment build for git tagging.
-
-## [0.0.6] - 2019-03-15
-
-### Changed
-
--   Rename base module **DraegerCoreModule** to **CommonSharedUiModule**
+-   Change JSON.stringify to a circular frindly solution.
 
 ## 0.0.1 - 2019-03-05
 
 ### Added
 
--   take the old libraries (VOCIE, PROC) and combine both to the new @draeger-web/common- structure
+-   initial setup
 
-[unreleased]: https://draeger.visualstudio.com/DraegerWeb/_git/Draeger.Web.Common?path=%2FSharedUI&version=GBmaster&_a=history
-[0.0.9]: https://draeger.visualstudio.com/DraegerWeb/_git/Draeger.Web.Common?version=GT0.0.9
+[unreleased]: https://github.com/uniprank/ngx-lazy-bind
