@@ -94,4 +94,13 @@ export class GenericComponentFactory implements OnDestroy {
 
         return _internalKey;
     }
+
+    protected keyExists(key: string): boolean {
+        try {
+            this._componentDictionaryService.componentExistsCheck(key);
+        } catch (e) {
+            return true;
+        }
+        return false;
+    }
 }

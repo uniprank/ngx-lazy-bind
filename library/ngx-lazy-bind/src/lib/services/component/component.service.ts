@@ -16,4 +16,8 @@ export class ComponentService extends GenericComponentFactory {
     ) {
         super(_componentFactoryResolver, _appRef, _injector, _componentDictionaryService);
     }
+
+    public has(key: string): boolean {
+        return this.keyExists(key);
+    }
 }

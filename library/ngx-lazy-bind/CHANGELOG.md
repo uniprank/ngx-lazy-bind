@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.0] - 2019-05-20
+
+### Added
+
+-   Add has function for ContentService to check if a component exists
+
 ## [1.0.0] - 2019-05-17
 
 ### Changed
