@@ -9,19 +9,16 @@ export class LazyBindDirective implements OnInit, OnChanges, OnDestroy {
     @Input('lazyBind')
     set type(value: string) {
         this._type = value;
-        this._createNewComponent();
-        this._viewContainerRef.clear();
-        setTimeout(() => this._appendComponent());
+        this._resetComponent();
     }
     get type(): string {
         return this._type;
     }
+
     @Input('lazyBindData')
     set data(value: any) {
         this._data = value;
-        this._createNewComponent();
-        this._viewContainerRef.clear();
-        setTimeout(() => this._appendComponent());
+        this._resetComponent();
     }
     get data(): any {
         return this._data;
@@ -41,6 +38,8 @@ export class LazyBindDirective implements OnInit, OnChanges, OnDestroy {
     ngOnDestroy() {
         this._componentService.remove(this._uniqueID);
     }
+
+    ngOnChanges() {}
 
     private _jsonStringifyCircular(o: any): string {
         // See discussion: https://stackoverflow.com/questions/11616630/json-stringify-avoid-typeerror-converting-circular-structure-to-json
@@ -65,6 +64,14 @@ export class LazyBindDirective implements OnInit, OnChanges, OnDestroy {
         });
         cache = null; // Enable garbage collection
         return _output;
+    }
+
+    private _resetComponent() {
+        if (this.data != null && this.type != null) {
+            this._createNewComponent();
+            this._viewContainerRef.clear();
+            setTimeout(() => this._appendComponent());
+        }
     }
 
     private _appendComponent() {
