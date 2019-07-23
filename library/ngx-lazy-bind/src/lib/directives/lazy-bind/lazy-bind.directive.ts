@@ -6,26 +6,36 @@ import { ComponentService } from '../../services/component/component.service';
     selector: '[lazyBind]'
 })
 export class LazyBindDirective implements OnInit, OnChanges, OnDestroy {
-    @Input('lazyBind') type: string;
-    @Input('lazyBindData') data: any;
+    @Input('lazyBind')
+    set type(value: string) {
+        this._type = value;
+        this._createNewComponent();
+        this._viewContainerRef.clear();
+        setTimeout(() => this._appendComponent());
+    }
+    get type(): string {
+        return this._type;
+    }
+    @Input('lazyBindData')
+    set data(value: any) {
+        this._data = value;
+        this._createNewComponent();
+        this._viewContainerRef.clear();
+        setTimeout(() => this._appendComponent());
+    }
+    get data(): any {
+        return this._data;
+    }
 
     private _uniqueID: string;
+    private _type: string;
+    private _data: string;
 
     constructor(private _componentService: ComponentService, private _viewContainerRef: ViewContainerRef) {}
 
     ngOnInit(): void {
         this._createNewComponent();
         this._appendComponent();
-    }
-
-    ngOnChanges(changes: SimpleChanges): void {
-        if (changes.type.currentValue != null && changes.data.currentValue != null) {
-            if (this._jsonStringifyCircular(changes.data.currentValue) != this._jsonStringifyCircular(changes.data.previousValue)) {
-                this._createNewComponent();
-                this._viewContainerRef.clear();
-                setTimeout(() => this._appendComponent());
-            }
-        }
     }
 
     ngOnDestroy() {
