@@ -44,8 +44,8 @@ export class LazyBindDirective implements OnInit, OnChanges, OnDestroy {
     private _jsonStringifyCircular(o: any): string {
         // See discussion: https://stackoverflow.com/questions/11616630/json-stringify-avoid-typeerror-converting-circular-structure-to-json
         // Note: cache should not be re-used by repeated calls to JSON.stringify.
-        var cache = [];
-        const _output = JSON.stringify(o, function(key, value) {
+        let cache = [];
+        const _output = JSON.stringify(o, (key, value) => {
             if (typeof value === 'object' && value !== null) {
                 if (cache.indexOf(value) !== -1) {
                     // Duplicate reference found

@@ -4,7 +4,9 @@ import { NativeComponentRefInterface } from '../../interfaces/native-component-r
 import { ComponentDictionaryService } from '../../services/component/component-dictionary.service';
 
 export class GenericComponentFactory implements OnDestroy {
-    private _componentItems: { [id: string]: NativeComponentRefInterface<any> } = {};
+    private _componentItems: {
+        [id: string]: NativeComponentRefInterface<any>;
+    } = {};
 
     constructor(
         protected _componentFactoryResolver: ComponentFactoryResolver,
@@ -14,8 +16,10 @@ export class GenericComponentFactory implements OnDestroy {
     ) {}
 
     ngOnDestroy() {
-        for (let key in this._componentItems) {
-            this.remove(key);
+        for (const key in this._componentItems) {
+            if (this._componentItems.hasOwnProperty(key)) {
+                this.remove(key);
+            }
         }
         this._componentItems = {};
     }
@@ -62,7 +66,11 @@ export class GenericComponentFactory implements OnDestroy {
         const domElem = (componentRef.hostView as EmbeddedViewRef<any>).rootNodes[0] as HTMLElement;
         domElem.id = uniqueID;
 
-        const _nativeComponentRef = { nativeElement: domElem, _ref: componentRef, type: componentName };
+        const _nativeComponentRef = {
+            nativeElement: domElem,
+            _ref: componentRef,
+            type: componentName
+        };
         this._componentItems[uniqueID] = _nativeComponentRef;
 
         return { id: uniqueID, template: _nativeComponentRef };
@@ -85,7 +93,7 @@ export class GenericComponentFactory implements OnDestroy {
     }
 
     private uniqueID(): string {
-        const _internalKey: string = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, c => {
+        const _internalKey: string = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
             // tslint:disable-next-line:no-bitwise
             const r = (Math.random() * 16) | 0,
                 v = c === 'x' ? r : (r & 0x3) | 0x8;
