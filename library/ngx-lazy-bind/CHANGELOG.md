@@ -7,13 +7,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [1.1.0] - 2019-05-20
+## [1.1.6] - 2020-02-28
+
+### Changed
+
+-   Update npm audit fix
+-   Refactoring of directive and factory
+
+## 1.1.0 - 2019-05-20
 
 ### Added
 
 -   Add has function for ContentService to check if a component exists
 
-## [1.0.0] - 2019-05-17
+## 1.0.0 - 2019-05-17
 
 ### Changed
 
@@ -26,3 +33,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 -   initial setup
 
 [unreleased]: https://github.com/uniprank/ngx-lazy-bind
+[1.1.6]: https://github.com/uniprank/ngx-lazy-bind/tree/1.1.6
