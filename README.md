@@ -1,6 +1,7 @@
-[![npm version](https://img.shields.io/npm/v/@uniprank/ngx-lazy-bind.svg?style=flat)](https://www.npmjs.com/package/@uniprank/ngx-lazy-bind)
-[![npm downloads](https://img.shields.io/npm/dm/@uniprank/ngx-lazy-bind.svg?style=flat)](https://npmjs.org/package/@uniprank/ngx-lazy-bind)
-[![npm license](https://img.shields.io/npm/l/@uniprank/ngx-lazy-bind.svg)](https://npmjs.org/package/@uniprank/ngx-lazy-bind)
+[![npm version](https://img.shields.io/npm/v/@uniprank/ngx-lazy-bind.svg?style=flat-square)](https://www.npmjs.com/package/@uniprank/ngx-lazy-bind)
+[![npm downloads](https://img.shields.io/npm/dm/@uniprank/ngx-lazy-bind.svg?style=flat-square)](https://npmjs.org/package/@uniprank/ngx-lazy-bind)
+[![npm license](https://img.shields.io/npm/l/@uniprank/ngx-lazy-bind.svg?style=flat-square)](https://npmjs.org/package/@uniprank/ngx-lazy-bind)
+[![travis build](https://img.shields.io/travis/uniprank/ngx-lazy-bind?label=Travis%3Abuild&style=flat-square)](https://travis-ci.org/uniprank/ngx-lazy-bind)
 
 You can use this angular service to spy scroll events from `window` or any other scrollable element.
 
@@ -24,9 +25,9 @@ If you use SystemJS to load your files, you might have to update your config wit
 
 ```js
 System.config({
-    packages: {
-        '@uniprank/ngx-lazy-bind': { defaultExtension: 'js' }
-    }
+  packages: {
+    '@uniprank/ngx-lazy-bind': { defaultExtension: 'js' }
+  }
 });
 ```
 
@@ -41,9 +42,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { LazyBindModule } from '@uniprank/ngx-lazy-bind';
 
 @NgModule({
-    imports: [BrowserModule, LazyBindModule.forRoot()],
-    declarations: [AppComponent],
-    bootstrap: [AppComponent]
+  imports: [BrowserModule, LazyBindModule.forRoot()],
+  declarations: [AppComponent],
+  bootstrap: [AppComponent]
 })
 export class AppModule {}
 ```
@@ -105,7 +106,7 @@ export class AppComponent {
 
 # TODO:
 
--   Finish unit tests
+- Finish unit tests
 
 ## License
 

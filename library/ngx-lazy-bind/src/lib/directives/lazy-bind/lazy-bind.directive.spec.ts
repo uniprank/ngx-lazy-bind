@@ -7,55 +7,53 @@ import { ComponentService } from '../../services/component/component.service';
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
 
 @Component({
-    template: `
-        <div>Hello world! {{ data.test }}</div>
-    `
+  template: `
+    <div>Hello world! {{ data.test }}</div>
+  `
 })
 class TestRenderComponent {
-    @Input() data: any;
+  @Input() data: any;
 }
 
 @Component({
-    template: `
-        <ng-container *lazyBind="let _bind; type: type; data: { test: 'test' }"></ng-container>
-    `
+  template: `
+    <ng-container *lazyBind="type; data: { test: 'test' }"></ng-container>
+  `
 })
+// tslint:disable-next-line: component-class-suffix
 class TestComponent2 {
-    type = 'TestRenderComponent';
+  type = 'TestRenderComponent';
 }
 
 describe('LazyBindDirective', () => {
-    let fixtureRenderer: ComponentFixture<TestRenderComponent>;
-    let componentRenderer: TestRenderComponent;
-
-    beforeEach(async(() => {
-        TestBed.configureTestingModule({
-            declarations: [LazyBindDirective, TestComponent2, TestRenderComponent],
-            providers: [ComponentService]
-            // schemas: [NO_ERRORS_SCHEMA]
-        });
-
-        TestBed.overrideModule(BrowserDynamicTestingModule, {
-            set: {
-                entryComponents: [TestRenderComponent]
-            }
-        });
-
-        TestBed.compileComponents();
-    }));
-
-    beforeEach(() => {
-        const _service = TestBed.get(ComponentService);
-        _service.add('TestRenderComponent', TestRenderComponent);
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      declarations: [LazyBindDirective, TestComponent2, TestRenderComponent],
+      providers: [ComponentService]
+      // schemas: [NO_ERRORS_SCHEMA]
     });
 
-    it('should create component only with type and data', async(() => {
-        const _fixture = TestBed.createComponent(TestComponent2);
-        const _component = _fixture.componentInstance;
-        expect(_component).toBeTruthy();
-        _fixture.detectChanges();
-        const compiled = _fixture.debugElement.nativeElement;
-        const div = compiled.querySelector('div');
-        expect(div.textContent).toContain('Hello world! test');
-    }));
+    TestBed.overrideModule(BrowserDynamicTestingModule, {
+      set: {
+        entryComponents: [TestRenderComponent]
+      }
+    });
+
+    TestBed.compileComponents();
+  }));
+
+  beforeEach(() => {
+    const _service = TestBed.get(ComponentService);
+    _service.add('TestRenderComponent', TestRenderComponent);
+  });
+
+  it('should create component only with type and data', async(() => {
+    const _fixture = TestBed.createComponent(TestComponent2);
+    const _component = _fixture.componentInstance;
+    expect(_component).toBeTruthy();
+    _fixture.detectChanges();
+    const compiled = _fixture.debugElement.nativeElement;
+    const div = compiled.querySelector('div');
+    expect(div.textContent).toContain('Hello world! test');
+  }));
 });
