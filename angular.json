@@ -15,7 +15,12 @@
                         "tsConfig": "library/ngx-lazy-bind/tsconfig.lib.json",
                         "project": "library/ngx-lazy-bind/ng-package.json"
                     }
-                },
+                ,          "configurations": {
+            "production": {
+              "tsConfig": "library/ngx-lazy-bind/tsconfig.lib.prod.json"
+            }
+          }
+},
                 "test": {
                     "builder": "@angular-builders/jest:run",
                     "options": {
@@ -51,6 +56,7 @@
                 "build": {
                     "builder": "@angular-devkit/build-angular:browser",
                     "options": {
+            "aot": true,
                         "baseHref": "/ngx-lazy-bind/test-cases/",
                         "outputPath": "docs/test-cases",
                         "index": "library/TestCases/src/index.html",
@@ -88,11 +94,17 @@
                             "extractLicenses": true,
                             "vendorChunk": false,
                             "buildOptimizer": true,
-                            "budgets": [{
-                                "type": "initial",
-                                "maximumWarning": "2mb",
-                                "maximumError": "5mb"
-                            }]
+                            "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ]
                         }
                     }
                 },
