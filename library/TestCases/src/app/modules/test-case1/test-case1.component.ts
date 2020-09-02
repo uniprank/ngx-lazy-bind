@@ -8,10 +8,10 @@ import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 export class TestCase1Component implements OnInit {
     public markdown = require('raw-loader!./README.md');
 
-    @ViewChild('headline', { read: ElementRef }) headline: ElementRef;
-    @ViewChild('text', { read: ElementRef }) text: ElementRef;
-    @ViewChild('count', { read: ElementRef }) count: ElementRef;
-    @ViewChild('special', { read: ElementRef }) special: ElementRef;
+    @ViewChild('headline', { read: ElementRef, static: true }) headline: ElementRef;
+    @ViewChild('text', { read: ElementRef, static: true }) text: ElementRef;
+    @ViewChild('count', { read: ElementRef, static: true }) count: ElementRef;
+    @ViewChild('special', { read: ElementRef, static: true }) special: ElementRef;
 
     public boxes: any = [];
     private _counter = 0;
