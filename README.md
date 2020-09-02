@@ -97,8 +97,8 @@ import { LazyBindModule } from '@uniprank/ngx-lazy-bind';
 
 @Injectable()
 @Component({
-	selector: 'app',
-	template: `<ng-container *lazyBind="'TEC'; data: {}"></ng-container>`
+  selector: 'app',
+  template: `<ng-container *lazyBind="'TEC'; data: {}"></ng-container>`
 })
 export class AppComponent {
 	constructor() {}
