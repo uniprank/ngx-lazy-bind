@@ -6,7 +6,7 @@
     "start": "ng serve --project=TestCases --host=0.0.0.0",
     "build": "ng build NgxLazyBind",
     "build:watch": "ng build NgxLazyBind --watch",
-    "build:package": "ng build NgxLazyBind",
+    "build:package": "ng build NgxLazyBind --prod",
     "build:testcases": "ng build --project=TestCases --prod",
     "test": "ng test NgxLazyBind --watch=false",
     "test:travis": "ng test NgxLazyBind --watch=false",
