@@ -3,6 +3,20 @@
 [![npm license](https://img.shields.io/npm/l/@uniprank/ngx-lazy-bind.svg?style=flat-square)](https://npmjs.org/package/@uniprank/ngx-lazy-bind)
 [![travis build](https://img.shields.io/travis/uniprank/ngx-lazy-bind?label=Travis%3Abuild&style=flat-square)](https://travis-ci.org/uniprank/ngx-lazy-bind)
 
+## Versions
+
+### If you use **Angular 4 / 5 / 6 / 7 / 8** in your project.
+
+```
+  npm i ngx-lazy-bind@1.1.6 --save
+```
+
+### If you use **Angular 10** in your project.
+
+```
+  npm i ngx-lazy-bind@1.2.0 --save
+```
+
 You can use this angular service to spy scroll events from `window` or any other scrollable element.
 
 This library implements two services. The `ComponentDictionaryService` can be used to add an entryComponent to the dictionary. You can also check if there exists a component with the given key. You have also the possibilty to override a component. For more information take a look directly to the [service]().

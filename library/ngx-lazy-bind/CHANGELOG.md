@@ -7,30 +7,37 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.2.0] - 2020-09-02
+
+### Update
+
+- Update to Angular 10
+
 ## [1.1.6] - 2020-02-28
 
 ### Changed
 
--   Update npm audit fix
--   Refactoring of directive and factory
+- Update npm audit fix
+- Refactoring of directive and factory
 
 ## 1.1.0 - 2019-05-20
 
 ### Added
 
--   Add has function for ContentService to check if a component exists
+- Add has function for ContentService to check if a component exists
 
 ## 1.0.0 - 2019-05-17
 
 ### Changed
 
--   Change JSON.stringify to a circular frindly solution.
+- Change JSON.stringify to a circular frindly solution.
 
 ## 0.0.1 - 2019-03-05
 
 ### Added
 
--   initial setup
+- initial setup
 
 [unreleased]: https://github.com/uniprank/ngx-lazy-bind
 [1.1.6]: https://github.com/uniprank/ngx-lazy-bind/tree/1.1.6
+[1.2.0]: https://github.com/uniprank/ngx-lazy-bind/tree/1.2.0
