@@ -3,6 +3,7 @@ import { ComponentFactoryResolver, ApplicationRef, Injector, EmbeddedViewRef, On
 import { NativeComponentRefInterface } from '../../interfaces/native-component-ref.interface';
 import { ComponentDictionaryService } from '../../services/component/component-dictionary.service';
 
+// TODO: Add Angular decorator.
 export class GenericComponentFactory implements OnDestroy {
     private _componentItems: {
         [id: string]: NativeComponentRefInterface<any>;
