@@ -1,37 +1,37 @@
-<markdown>{{ markdown }}</markdown>
+<markdown>{{ markdown.default }}</markdown>
 <h2>Example</h2>
 <section class="container-input">
-    <h3>Create a lazy component</h3>
-    <div class="label-input">
-        <label for="headline">Headline</label>
-        <input id="headline" placeholder="Headline" type="text" value="Default Headline" #headline>
-    </div>
-    <div class="label-input">
-        <label for="text">Text</label>
-        <input id="text" placeholder="Text" type="text" value="Description Text" #text>
-    </div>
-    <div class="label-input">
-        <label for="count">Count</label>
-        <input id="count" placeholder="Count" type="text" value="" #count>
-    </div>
-    <div class="label-input">
-        <label for="special">Special Data string</label>
-        <input id="special" placeholder="Special Data string" type="text" value="" #special>
-    </div>
-    <div class="actions">
-        <button (click)="createBox()">Create Test-Example</button>
-        <button (click)="createSpecialBox()">Create Test-Example2</button>
-    </div>
+  <h3>Create a lazy component</h3>
+  <div class="label-input">
+    <label for="headline">Headline</label>
+    <input id="headline" placeholder="Headline" type="text" value="Default Headline" #headline />
+  </div>
+  <div class="label-input">
+    <label for="text">Text</label>
+    <input id="text" placeholder="Text" type="text" value="Description Text" #text />
+  </div>
+  <div class="label-input">
+    <label for="count">Count</label>
+    <input id="count" placeholder="Count" type="text" value="" #count />
+  </div>
+  <div class="label-input">
+    <label for="special">Special Data string</label>
+    <input id="special" placeholder="Special Data string" type="text" value="" #special />
+  </div>
+  <div class="actions">
+    <button (click)="createBox()">Create Test-Example</button>
+    <button (click)="createSpecialBox()">Create Test-Example2</button>
+  </div>
 </section>
 <section>
-    <h3>Lazy Bind</h3>
-    <div class="boxes">
-        <ng-container *ngFor="let box of boxes">
-            <ng-container *lazyBind="box.type; data: box.data"></ng-container>
-        </ng-container>
-    </div>
+  <h3>Lazy Bind</h3>
+  <div class="boxes">
+    <ng-container *ngFor="let box of boxes">
+      <ng-container *lazyBind="box.type; data: box.data"></ng-container>
+    </ng-container>
+  </div>
 </section>
 <section>
-    <h3>JSON</h3>
-    <pre [innerHtml]="boxes | json"></pre>
+  <h3>JSON</h3>
+  <pre [innerHtml]="boxes | json"></pre>
 </section>
