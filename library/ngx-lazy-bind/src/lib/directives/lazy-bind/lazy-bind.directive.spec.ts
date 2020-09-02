@@ -7,18 +7,14 @@ import { ComponentService } from '../../services/component/component.service';
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
 
 @Component({
-  template: `
-    <div>Hello world! {{ data.test }}</div>
-  `
+  template: ` <div>Hello world! {{ data.test }}</div> `
 })
 class TestRenderComponent {
   @Input() data: any;
 }
 
 @Component({
-  template: `
-    <ng-container *lazyBind="type; data: { test: 'test' }"></ng-container>
-  `
+  template: ` <ng-container *lazyBind="type; data: { test: 'test' }"></ng-container> `
 })
 // tslint:disable-next-line: component-class-suffix
 class TestComponent2 {
@@ -43,7 +39,7 @@ describe('LazyBindDirective', () => {
   }));
 
   beforeEach(() => {
-    const _service = TestBed.get(ComponentService);
+    const _service = TestBed.inject(ComponentService);
     _service.add('TestRenderComponent', TestRenderComponent);
   });
 
