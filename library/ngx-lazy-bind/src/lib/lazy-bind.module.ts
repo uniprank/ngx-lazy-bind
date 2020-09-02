@@ -17,7 +17,7 @@ const DECLARATIONS = [];
     exports: [...DECLARATIONS, ...SHARED_MODULE_COMPONENTS, ...SHARED_MODULE_PIPES, ...SHARED_MODULE_DIRECTIVES]
 })
 export class LazyBindModule {
-    static forRoot(): ModuleWithProviders {
+    static forRoot(): ModuleWithProviders<LazyBindModule> {
         return {
             ngModule: LazyBindModule,
             providers: [...SHARED_MODULE_PROVIDERS]
