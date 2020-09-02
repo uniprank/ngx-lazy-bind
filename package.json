@@ -55,7 +55,7 @@
     "jest-junit": "^6.4.0",
     "jest-junit-reporter": "^1.1.0",
     "ng-packagr": "^5.4.0",
-    "node-sass": "^4.13.1",
+    "node-sass": "^4.14.1",
     "protractor": "~5.4.0",
     "ts-node": "~7.0.0",
     "tsickle": "^0.37.0",
