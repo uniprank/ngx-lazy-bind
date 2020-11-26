@@ -14,7 +14,7 @@
 ### If you use **Angular 10** in your project.
 
 ```
-  npm i ngx-lazy-bind@1.2.0 --save
+  npm i ngx-lazy-bind@1.3.0 --save
 ```
 
 You can use this angular service to spy scroll events from `window` or any other scrollable element.

@@ -1,4 +1,4 @@
-import { ComponentFactoryResolver, ApplicationRef, Injector, EmbeddedViewRef, OnDestroy } from '@angular/core';
+import { ComponentFactoryResolver, ApplicationRef, Injector, EmbeddedViewRef, OnDestroy, Type } from '@angular/core';
 
 import { NativeComponentRefInterface } from '../../interfaces/native-component-ref.interface';
 import { ComponentDictionaryService } from '../../services/component/component-dictionary.service';
@@ -46,7 +46,7 @@ export abstract class GenericComponentFactory implements OnDestroy {
       return this._create<T>(componentName, data, null, attach);
     }
 
-    const _component: T = this._componentDictionaryService.get(componentName);
+    const _component: T | Type<any> = this._componentDictionaryService.get(componentName);
 
     // Create a component reference from the component
     const componentRef = this._componentFactoryResolver.resolveComponentFactory<any>(_component as any).create(this._injector);

@@ -5,6 +5,7 @@ import { ComponentDictionaryService } from '../../services/component/component-d
 
 import { GenericComponentFactory } from './generic-component-factory';
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
+import { LazyModuleService } from '../../services/lazy-module/lazy-module.service';
 
 @Component({
   template: ` <p>TestComponent</p> `
@@ -21,7 +22,7 @@ describe('GenericComponentFactory', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [TestComponent],
-      providers: []
+      providers: [ComponentDictionaryService, LazyModuleService]
     });
 
     TestBed.overrideModule(BrowserDynamicTestingModule, {
@@ -32,12 +33,13 @@ describe('GenericComponentFactory', () => {
   });
 
   beforeEach(inject(
-    [ComponentFactoryResolver, ApplicationRef, Injector, ComponentDictionaryService],
+    [ComponentFactoryResolver, ApplicationRef, Injector, ComponentDictionaryService, LazyModuleService],
     (
       _componentFactoryResolver: ComponentFactoryResolver,
       _applicationRef: ApplicationRef,
       _injector: Injector,
-      _componentDictionaryService: ComponentDictionaryService
+      _componentDictionaryService: ComponentDictionaryService,
+      _lazyModuleService: LazyModuleService
     ) => {
       componentFactory = new TestService(_componentFactoryResolver, _applicationRef, _injector, _componentDictionaryService);
     }

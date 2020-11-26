@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.3.0] - 2020-11-26
+
+### Add
+
+- Added new LazyModuleService
+- Added new Function for ComponentDictionaryService (async getWithModule) to lazyLoad Module before
+
 ## [1.2.0] - 2020-09-02
 
 ### Update

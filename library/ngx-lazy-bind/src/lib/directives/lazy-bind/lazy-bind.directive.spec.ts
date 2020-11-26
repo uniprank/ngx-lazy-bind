@@ -5,6 +5,8 @@ import { Component, NO_ERRORS_SCHEMA, Input } from '@angular/core';
 import { LazyBindDirective } from './lazy-bind.directive';
 import { ComponentService } from '../../services/component/component.service';
 import { BrowserDynamicTestingModule } from '@angular/platform-browser-dynamic/testing';
+import { LazyModuleService } from '../../services/lazy-module/lazy-module.service';
+import { ComponentDictionaryService } from '../../services/component/component-dictionary.service';
 
 @Component({
   template: ` <div>Hello world! {{ data.test }}</div> `
@@ -25,7 +27,7 @@ describe('LazyBindDirective', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [LazyBindDirective, TestComponent2, TestRenderComponent],
-      providers: [ComponentService]
+      providers: [ComponentService, LazyModuleService, ComponentDictionaryService]
       // schemas: [NO_ERRORS_SCHEMA]
     });
 

@@ -1,14 +1,25 @@
-import { TestBed, inject } from '@angular/core/testing';
-
+import { NgModule } from '@angular/core';
+import { TestBed } from '@angular/core/testing';
+import { LazyModuleService } from '../lazy-module/lazy-module.service';
 import { ComponentDictionaryService } from './component-dictionary.service';
 
-describe('ComponentDictionaryService', () => {
-  let _dictionary;
+@NgModule()
+class TestModule {
+  constructor() {}
+}
 
-  beforeEach(() => TestBed.configureTestingModule({}));
+describe('ComponentDictionaryService', () => {
+  let _dictionary: ComponentDictionaryService, _moduleService: LazyModuleService;
+
+  beforeEach(() =>
+    TestBed.configureTestingModule({
+      providers: [LazyModuleService, ComponentDictionaryService]
+    })
+  );
 
   beforeEach(() => {
     _dictionary = TestBed.inject(ComponentDictionaryService);
+    _moduleService = TestBed.inject(LazyModuleService);
   });
 
   it('should be created', () => {
@@ -34,5 +45,22 @@ describe('ComponentDictionaryService', () => {
     _dictionary.add('Object', { test: 'test' });
     _dictionary.override('Object', { test2: 'test2' });
     expect(JSON.stringify(_dictionary.get('Object'))).toBe(JSON.stringify({ test2: 'test2' }));
+  });
+
+  it('should load module before component', async () => {
+    _moduleService.set('Module1', () => Promise.resolve(TestModule));
+    expect(_moduleService.has('Module1')).toBeTruthy();
+    _dictionary.add('Object', { test: 'test' }, 'Module1');
+    expect(JSON.stringify(await _dictionary.getWithModule('Object'))).toBe(JSON.stringify({ test: 'test' }));
+  });
+
+  it('should not load component because module name is missing', async () => {
+    _moduleService.set('Module1', () => Promise.resolve(TestModule));
+    expect(_moduleService.has('Module1')).toBeTruthy();
+    _dictionary.add('Object', { test: 'test' });
+    _dictionary
+      .getWithModule('Object')
+      .then(() => expect(false).toBeTruthy())
+      .catch(() => expect(true).toBeTruthy());
   });
 });

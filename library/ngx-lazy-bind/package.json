@@ -1,6 +1,6 @@
 {
   "name": "@uniprank/ngx-lazy-bind",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "author": {
     "name": "Dennis Fiedler",
     "email": "npm-package@uniprank.com",
@@ -8,10 +8,12 @@
   },
   "license": "MIT",
   "keywords": [
+    "ngx",
     "angular",
     "lazy bind",
     "lazy bind component",
     "lazy component",
+    "lazy module",
     "@uniprank"
   ],
   "homepage": "https://github.com/uniprank/ngx-lazy-bind#readme",

@@ -3,24 +3,25 @@ import { NgModule, Provider, ModuleWithProviders } from '@angular/core';
 import { LazyBindDirective } from './directives/lazy-bind/lazy-bind.directive';
 import { ComponentService } from './services/component/component.service';
 import { ComponentDictionaryService } from './services/component/component-dictionary.service';
+import { LazyModuleService } from './services/lazy-module/lazy-module.service';
 
 const SHARED_MODULE_COMPONENTS = [];
 const SHARED_MODULE_PIPES = [];
 const SHARED_MODULE_DIRECTIVES = [LazyBindDirective];
-const SHARED_MODULE_PROVIDERS: Provider[] = [ComponentService, ComponentDictionaryService];
+const SHARED_MODULE_PROVIDERS: Provider[] = [ComponentService, ComponentDictionaryService, LazyModuleService];
 const DECLARATIONS = [];
 
 @NgModule({
-    imports: [],
-    declarations: [...DECLARATIONS, ...SHARED_MODULE_COMPONENTS, ...SHARED_MODULE_PIPES, ...SHARED_MODULE_DIRECTIVES],
-    providers: [],
-    exports: [...DECLARATIONS, ...SHARED_MODULE_COMPONENTS, ...SHARED_MODULE_PIPES, ...SHARED_MODULE_DIRECTIVES]
+  imports: [],
+  declarations: [...DECLARATIONS, ...SHARED_MODULE_COMPONENTS, ...SHARED_MODULE_PIPES, ...SHARED_MODULE_DIRECTIVES],
+  providers: [],
+  exports: [...DECLARATIONS, ...SHARED_MODULE_COMPONENTS, ...SHARED_MODULE_PIPES, ...SHARED_MODULE_DIRECTIVES]
 })
 export class LazyBindModule {
-    static forRoot(): ModuleWithProviders<LazyBindModule> {
-        return {
-            ngModule: LazyBindModule,
-            providers: [...SHARED_MODULE_PROVIDERS]
-        };
-    }
+  static forRoot(): ModuleWithProviders<LazyBindModule> {
+    return {
+      ngModule: LazyBindModule,
+      providers: [...SHARED_MODULE_PROVIDERS]
+    };
+  }
 }
