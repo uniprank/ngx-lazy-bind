@@ -8,6 +8,9 @@ export { ComponentInterface } from './lib/interfaces/component.interface';
 // classes
 export { GenericComponentFactory } from './lib/classes/generic-component-factory/generic-component-factory';
 
+// directives
+export { LazyBindDirective } from './lib/directives/lazy-bind/lazy-bind.directive';
+
 // services
 export { ComponentDictionaryService } from './lib/services/component/component-dictionary.service';
 export { ComponentService } from './lib/services/component/component.service';

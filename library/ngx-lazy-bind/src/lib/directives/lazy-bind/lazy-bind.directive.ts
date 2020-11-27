@@ -40,7 +40,9 @@ export class LazyBindDirective implements OnInit, OnChanges, OnDestroy {
   }
 
   ngOnInit(): void {
-    this._buildComponent();
+    if (!this._active) {
+      this._buildComponent();
+    }
   }
 
   ngOnDestroy() {
@@ -75,8 +77,9 @@ export class LazyBindDirective implements OnInit, OnChanges, OnDestroy {
   }
 
   private _resetComponent() {
-    if (this.data != null && this.type != null) {
+    if (this.data != null && this.type != null && !this._active) {
       this._viewContainerRef.clear();
+      this._active = true;
       setTimeout(() => this._buildComponent());
     }
   }
@@ -92,10 +95,6 @@ export class LazyBindDirective implements OnInit, OnChanges, OnDestroy {
   }
 
   private _buildComponent() {
-    if (this._active) {
-      return;
-    }
-    this._active = true;
     const _module = this._lazyModuleService.getModuleName(this.type);
     if (_module && !this._lazyModuleService.isLoaded(_module)) {
       this._lazyModuleService.load(_module).then(() => {
