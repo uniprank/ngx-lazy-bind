@@ -29,24 +29,18 @@ export class LazyBindDirective implements OnInit, OnChanges, OnDestroy {
   private _uniqueID: string;
   private _type: string;
   private _data: string;
+  private _active: boolean;
 
   constructor(
     private _componentService: ComponentService,
     private _lazyModuleService: LazyModuleService,
     private _viewContainerRef: ViewContainerRef
-  ) {}
+  ) {
+    this._active = false;
+  }
 
   ngOnInit(): void {
-    const _module = this._lazyModuleService.getModuleName(this.type);
-    if (_module && !this._lazyModuleService.isLoaded(_module)) {
-      this._lazyModuleService.load(_module).then(() => {
-        this._createNewComponent();
-        this._appendComponent();
-      });
-    } else {
-      this._createNewComponent();
-      this._appendComponent();
-    }
+    this._buildComponent();
   }
 
   ngOnDestroy() {
@@ -82,18 +76,8 @@ export class LazyBindDirective implements OnInit, OnChanges, OnDestroy {
 
   private _resetComponent() {
     if (this.data != null && this.type != null) {
-      const _module = this._lazyModuleService.getModuleName(this.type);
-      if (_module && !this._lazyModuleService.isLoaded(_module)) {
-        this._lazyModuleService.load(_module).then(() => {
-          this._createNewComponent();
-          this._viewContainerRef.clear();
-          setTimeout(() => this._appendComponent());
-        });
-      } else {
-        this._createNewComponent();
-        this._viewContainerRef.clear();
-        setTimeout(() => this._appendComponent());
-      }
+      this._viewContainerRef.clear();
+      setTimeout(() => this._buildComponent());
     }
   }
 
@@ -105,5 +89,26 @@ export class LazyBindDirective implements OnInit, OnChanges, OnDestroy {
   private _createNewComponent() {
     const _object = this._componentService.createComponentRef(this.type, this.data);
     this._uniqueID = _object.id;
+  }
+
+  private _buildComponent() {
+    if (this._active) {
+      return;
+    }
+    this._active = true;
+    const _module = this._lazyModuleService.getModuleName(this.type);
+    if (_module && !this._lazyModuleService.isLoaded(_module)) {
+      this._lazyModuleService.load(_module).then(() => {
+        this._createBuildComponent();
+      });
+    } else {
+      this._createBuildComponent();
+    }
+  }
+
+  private _createBuildComponent() {
+    this._createNewComponent();
+    this._appendComponent();
+    this._active = false;
   }
 }
