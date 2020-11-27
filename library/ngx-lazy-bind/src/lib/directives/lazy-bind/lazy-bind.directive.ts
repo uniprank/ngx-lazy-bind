@@ -1,4 +1,14 @@
-import { Directive, Input, OnInit, OnChanges, SimpleChanges, ViewContainerRef, OnDestroy, TemplateRef } from '@angular/core';
+import {
+  Directive,
+  Input,
+  OnInit,
+  OnChanges,
+  SimpleChanges,
+  ViewContainerRef,
+  OnDestroy,
+  TemplateRef,
+  ChangeDetectorRef
+} from '@angular/core';
 
 import { ComponentService } from '../../services/component/component.service';
 import { LazyModuleService } from '../../services/lazy-module/lazy-module.service';
@@ -34,7 +44,8 @@ export class LazyBindDirective implements OnInit, OnChanges, OnDestroy {
   constructor(
     private _componentService: ComponentService,
     private _lazyModuleService: LazyModuleService,
-    private _viewContainerRef: ViewContainerRef
+    private _viewContainerRef: ViewContainerRef,
+    private _changeDetectorRef: ChangeDetectorRef
   ) {
     this._active = false;
   }
@@ -87,6 +98,8 @@ export class LazyBindDirective implements OnInit, OnChanges, OnDestroy {
   private _appendComponent() {
     const _element = this._componentService.get(this._uniqueID);
     this._viewContainerRef.insert(_element._ref.hostView);
+    this._changeDetectorRef.markForCheck();
+    this._changeDetectorRef.detectChanges();
   }
 
   private _createNewComponent() {
