@@ -1,9 +1,10 @@
+import { Injectable } from '@angular/core';
 import { ComponentFactoryResolver, ApplicationRef, Injector, EmbeddedViewRef, OnDestroy, Type } from '@angular/core';
 
 import { NativeComponentRefInterface } from '../../interfaces/native-component-ref.interface';
 import { ComponentDictionaryService } from '../../services/component/component-dictionary.service';
 
-// TODO: Add Angular decorator.
+@Injectable()
 export abstract class GenericComponentFactory implements OnDestroy {
   private _componentItems: {
     [id: string]: NativeComponentRefInterface<any>;
@@ -29,6 +30,10 @@ export abstract class GenericComponentFactory implements OnDestroy {
     this._componentDictionaryService.add(componentName, sectionComponent);
   }
 
+  public hasModule(componentName: string): boolean {
+    return this._componentDictionaryService.hasModule(componentName) && !this._componentDictionaryService.isLoaded(componentName);
+  }
+
   public createComponent<T>(componentName: string, data: T, uniqueID?: string) {
     return this._create<T>(componentName, data, uniqueID || null, true);
   }
@@ -38,7 +43,7 @@ export abstract class GenericComponentFactory implements OnDestroy {
   }
 
   private _create<T>(componentName: string, data: T, uniqueID: string, attach = false) {
-    uniqueID = uniqueID || this.uniqueID();
+    uniqueID = uniqueID || this.generateComponentUniqueId();
 
     this._componentDictionaryService.componentNotExistsCheck(componentName);
 
@@ -102,6 +107,14 @@ export abstract class GenericComponentFactory implements OnDestroy {
     });
 
     return _internalKey;
+  }
+
+  private generateComponentUniqueId(): string {
+    let _id: string;
+    do {
+      _id = this.uniqueID();
+    } while (this._componentItems[_id] != null);
+    return _id;
   }
 
   protected keyExists(key: string): boolean {

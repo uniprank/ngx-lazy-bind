@@ -12,6 +12,16 @@ export class ComponentDictionaryService {
     this._dictionary[name] = { component, moduleName };
   }
 
+  hasModule(name: string): boolean {
+    this.componentNotExistsCheck(name);
+    return !!this._dictionary[name].moduleName;
+  }
+
+  isLoaded(name: string): boolean {
+    this.componentNotExistsCheck(name);
+    return !!this._dictionary[name].moduleName && this._lazyModuleService.isLoaded(this._dictionary[name].moduleName);
+  }
+
   componentExistsCheck(name: string) {
     if (this._dictionary[name]) {
       throw new Error(`Add of component [${name}] failed because it allready exists.`);
@@ -23,7 +33,7 @@ export class ComponentDictionaryService {
     return this._dictionary[name].component;
   }
 
-  async getWithModule(name: string): Promise<Type<any>> {
+  async getAsync(name: string): Promise<Type<any>> {
     this.componentNotExistsCheck(name);
     if (this._dictionary[name].moduleName != null) {
       await this._lazyModuleService.load(this._dictionary[name].moduleName);

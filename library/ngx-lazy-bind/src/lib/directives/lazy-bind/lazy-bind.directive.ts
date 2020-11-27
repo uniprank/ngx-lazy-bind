@@ -1,6 +1,7 @@
 import { Directive, Input, OnInit, OnChanges, SimpleChanges, ViewContainerRef, OnDestroy, TemplateRef } from '@angular/core';
 
 import { ComponentService } from '../../services/component/component.service';
+import { LazyModuleService } from '../../services/lazy-module/lazy-module.service';
 
 @Directive({
   // tslint:disable-next-line: directive-selector
@@ -29,11 +30,23 @@ export class LazyBindDirective implements OnInit, OnChanges, OnDestroy {
   private _type: string;
   private _data: string;
 
-  constructor(private _componentService: ComponentService, private _viewContainerRef: ViewContainerRef) {}
+  constructor(
+    private _componentService: ComponentService,
+    private _lazyModuleService: LazyModuleService,
+    private _viewContainerRef: ViewContainerRef
+  ) {}
 
   ngOnInit(): void {
-    this._createNewComponent();
-    this._appendComponent();
+    const _module = this._lazyModuleService.getModuleName(this.type);
+    if (_module && !this._lazyModuleService.isLoaded(_module)) {
+      this._lazyModuleService.load(_module).then(() => {
+        this._createNewComponent();
+        this._appendComponent();
+      });
+    } else {
+      this._createNewComponent();
+      this._appendComponent();
+    }
   }
 
   ngOnDestroy() {
@@ -69,9 +82,18 @@ export class LazyBindDirective implements OnInit, OnChanges, OnDestroy {
 
   private _resetComponent() {
     if (this.data != null && this.type != null) {
-      this._createNewComponent();
-      this._viewContainerRef.clear();
-      setTimeout(() => this._appendComponent());
+      const _module = this._lazyModuleService.getModuleName(this.type);
+      if (_module && !this._lazyModuleService.isLoaded(_module)) {
+        this._lazyModuleService.load(_module).then(() => {
+          this._createNewComponent();
+          this._viewContainerRef.clear();
+          setTimeout(() => this._appendComponent());
+        });
+      } else {
+        this._createNewComponent();
+        this._viewContainerRef.clear();
+        setTimeout(() => this._appendComponent());
+      }
     }
   }
 

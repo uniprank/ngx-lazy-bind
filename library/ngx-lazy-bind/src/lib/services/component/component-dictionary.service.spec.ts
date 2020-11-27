@@ -51,7 +51,7 @@ describe('ComponentDictionaryService', () => {
     _moduleService.set('Module1', () => Promise.resolve(TestModule));
     expect(_moduleService.has('Module1')).toBeTruthy();
     _dictionary.add('Object', { test: 'test' }, 'Module1');
-    expect(JSON.stringify(await _dictionary.getWithModule('Object'))).toBe(JSON.stringify({ test: 'test' }));
+    expect(JSON.stringify(await _dictionary.getAsync('Object'))).toBe(JSON.stringify({ test: 'test' }));
   });
 
   it('should not load component because module name is missing', async () => {
@@ -59,7 +59,7 @@ describe('ComponentDictionaryService', () => {
     expect(_moduleService.has('Module1')).toBeTruthy();
     _dictionary.add('Object', { test: 'test' });
     _dictionary
-      .getWithModule('Object')
+      .getAsync('Object')
       .then(() => expect(false).toBeTruthy())
       .catch(() => expect(true).toBeTruthy());
   });
