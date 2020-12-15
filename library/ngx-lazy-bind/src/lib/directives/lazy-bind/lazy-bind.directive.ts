@@ -9,6 +9,7 @@ import {
   TemplateRef,
   ChangeDetectorRef
 } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 import { ComponentService } from '../../services/component/component.service';
 import { LazyModuleService } from '../../services/lazy-module/lazy-module.service';

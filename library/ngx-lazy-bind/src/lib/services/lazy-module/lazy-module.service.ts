@@ -1,9 +1,10 @@
 import { Compiler, Injectable, Injector, Type } from '@angular/core';
+import { BehaviorSubject, Subject } from 'rxjs';
 
 @Injectable()
 export class LazyModuleService {
   private _modules: {
-    [moduleName: string]: { load: () => Promise<Type<any>>; componentNames: Array<string> };
+    [moduleName: string]: { load: () => Promise<Type<any>>; componentNames: Array<string>; done: boolean; doneProm: Subject<void> };
   } = {};
   private _components: { [componentName: string]: string } = {};
   private _loaded: Array<string> = [];
@@ -15,7 +16,7 @@ export class LazyModuleService {
       if (componentNames != null && this._possibilityCheck(componentNames)) {
         componentNames.forEach((componentName) => (this._components[componentName] = moduleName));
       }
-      this._modules[moduleName] = { load, componentNames };
+      this._modules[moduleName] = { load, componentNames, done: false, doneProm: new Subject() };
     }
   }
 
@@ -28,7 +29,7 @@ export class LazyModuleService {
   }
 
   public isLoaded(moduleName: string): boolean {
-    return this._loaded.indexOf(moduleName) !== -1;
+    return this._loaded.indexOf(moduleName) !== -1 && this._modules[moduleName].done;
   }
 
   public async load(moduleName: string): Promise<void> {
@@ -38,8 +39,11 @@ export class LazyModuleService {
         const _module = await this._modules[moduleName].load();
         const _factory = this._compiler.compileModuleSync(_module);
         _factory.create(this._injector);
+        this._modules[moduleName].done = true;
+        this._modules[moduleName].doneProm.complete();
+        return;
       }
-      return;
+      return this._modules[moduleName].doneProm.toPromise();
     }
     throw new Error(`LazyLoadService: No Lazy Module found: ${moduleName}`);
   }
