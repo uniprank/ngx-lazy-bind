@@ -45,13 +45,16 @@ describe('LazyBindDirective', () => {
     _service.add('TestRenderComponent', TestRenderComponent);
   });
 
-  it('should create component only with type and data', async(() => {
+  it('should create component only with type and data', async (done) => {
     const _fixture = TestBed.createComponent(TestComponent2);
     const _component = _fixture.componentInstance;
     expect(_component).toBeTruthy();
     _fixture.detectChanges();
-    const compiled = _fixture.debugElement.nativeElement;
-    const div = compiled.querySelector('div');
-    expect(div.textContent).toContain('Hello world! test');
-  }));
+    setTimeout(() => {
+      const compiled = _fixture.debugElement.nativeElement;
+      const div: HTMLDivElement = compiled.querySelector('div');
+      expect(div.innerHTML).toContain('Hello world! test');
+      done();
+    }, 500);
+  });
 });

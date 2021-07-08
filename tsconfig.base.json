@@ -1,35 +1,27 @@
 {
-    "compileOnSave": false,
-    "compilerOptions": {
-        "baseUrl": "./",
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "./",
     "downlevelIteration": true,
-        "outDir": "./dist/out-tsc",
-        "sourceMap": true,
-        "declaration": false,
-        "module": "es2020",
-        "moduleResolution": "node",
-        "emitDecoratorMetadata": true,
-        "experimentalDecorators": true,
-        "importHelpers": true,
-        "target": "es2015",
-        "types": ["jest", "node"],
-        "typeRoots": [
-            "node_modules/@types", "typings.d.ts"
-        ],
-        "lib": [
-            "es2018",
-            "dom"
-        ],
-        "paths": {
-            "ngx-lazy-bind": [
-                "dist/ngx-lazy-bind"
-            ],
-            "ngx-lazy-bind/*": [
-                "dist/ngx-lazy-bind/*"
-            ],
-            "styles-test-cases": [
-                "library/TestCases/src/styles"
-            ]
-        }
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "declaration": false,
+    "module": "es2020",
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "types": ["jest", "node"],
+    "typeRoots": ["node_modules/@types", "typings.d.ts"],
+    "lib": ["es2018", "dom"],
+    "paths": {
+      "ngx-lazy-bind": ["dist/ngx-lazy-bind"],
+      "ngx-lazy-bind/*": ["dist/ngx-lazy-bind/*"],
+      "styles-test-cases": ["library/TestCases/src/styles"]
     }
+  },
+  "angularCompilerOptions": {
+    "strictTemplates": true
+  }
 }
